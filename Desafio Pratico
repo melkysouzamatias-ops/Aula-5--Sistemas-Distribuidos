@@ -1,0 +1,16 @@
+import threading
+import time
+
+estoque = 5
+lock = threading.Lock()
+
+def comprar(cliente):
+    global estoque
+    with lock:
+        if estoque > 0:
+           print(cliente, "encontrou", estoque, "unidade(s)")
+           time.sleep(0.5)
+           estoque -= 1
+           print(cliente, "comprou. Restam:", estoque)
+        else:
+           print(cliente, "não conseguiu comprar: estoque esgotado")
